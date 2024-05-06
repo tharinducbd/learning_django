@@ -40,3 +40,9 @@ class Student(models.Model):
     last_name = models.CharField(max_length=80)
     subjects = models.ManyToManyField(Subject)
     house = models.ForeignKey(House, on_delete=models.CASCADE, related_name="house_students")
+
+    def __str__(self) -> str:
+        return f"{self.first_name} {self.last_name} of {self.house}"
+
+    class Meta:
+        ordering = ["first_name", "last_name", "house"]
