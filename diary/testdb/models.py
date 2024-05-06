@@ -25,5 +25,13 @@ class Teacher(models.Model):
         # verbose_name_plural = "Teachers"
 
 
+class House(models.Model):
+    name = models.CharField(max_length=50)
+    emblem = models.CharField(max_length=50)
+    head = models.OneToOneField(Teacher, on_delete=models.CASCADE)
+
+
 class Student(models.Model):
-    name = models.CharField(max_length=80)
+    first_name = models.CharField(max_length=80)
+    last_name = models.CharField(max_length=80)
+    subjects = models.ManyToManyField(Subject)
