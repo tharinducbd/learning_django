@@ -27,11 +27,16 @@ class Teacher(models.Model):
 
 class House(models.Model):
     name = models.CharField(max_length=50)
+    founder = models.CharField(max_length=80)
     emblem = models.CharField(max_length=50)
     head = models.OneToOneField(Teacher, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.name}"
 
 
 class Student(models.Model):
     first_name = models.CharField(max_length=80)
     last_name = models.CharField(max_length=80)
     subjects = models.ManyToManyField(Subject)
+    house = models.ForeignKey(House, on_delete=models.CASCADE, related_name="house_students")
