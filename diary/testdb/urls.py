@@ -3,5 +3,5 @@ from . import views
 
 app_name = 'testdb'
 urlpatterns = [
-    path("", views.IndexView.as_view(), name="index"),
+    path("teachers/", views.TeacherList.as_view(), name="teacher_list"),
 ]

@@ -8,7 +8,7 @@ from django.views import generic
 from .models import Teacher
 
 
-class IndexView(generic.ListView):
+class TeacherList(generic.ListView):
     template_name = "testdb/index.html"
     context_object_name = "list_of_teachers"
 
