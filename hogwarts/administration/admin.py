@@ -2,7 +2,26 @@ from django.contrib import admin
 
 from .models import House, Student, Subject, Teacher
 
-admin.site.register(House)
-admin.site.register(Student)
-admin.site.register(Subject)
-admin.site.register(Teacher)
+
+class HouseAdmin(admin.ModelAdmin):
+    list_display = ("id", "name", "founder", "emblem", "head", "homeroom",)
+
+
+class StudentAdmin(admin.ModelAdmin):
+    list_display = ("name", "house", "id",)
+    filter_horizontal = ("subjects",)
+
+
+class SubjectAdmin(admin.ModelAdmin):
+    list_display = ("name", "id",)
+
+
+class TeacherAdmin(admin.ModelAdmin):
+    list_display = ("name", "age", "id")
+    filter_horizontal = ("subjects",)
+
+
+admin.site.register(House, HouseAdmin)
+admin.site.register(Student, StudentAdmin)
+admin.site.register(Subject, SubjectAdmin)
+admin.site.register(Teacher, TeacherAdmin)
