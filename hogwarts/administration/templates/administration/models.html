@@ -1,0 +1,54 @@
+{% extends 'administration/layout.html' %}
+
+{% block title %}
+    School Management
+{% endblock %}
+
+{% block body %}
+
+    {% if all_houses %}
+        <h3>Houses of Hogwarts</h3>
+        <ul>
+            {% for house in all_houses %}
+                <li>{{ house }}</li>
+            {% empty %}
+                <li>No houses added yet.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if all_teachers %}
+        <h3>Hogwarts Teachers</h3>
+        <ul>
+            {% for teacher in all_teachers %}
+                <li>{{ teacher }}</li>
+            {% empty %}
+                <li>No teachers added yet.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if all_subjects %}
+        <h3>Subjects offered at Hogwarts</h3>
+        <ul>
+            {% for subject in all_subjects %}
+                <li>{{ subject }}</li>
+            {% empty %}
+                <li>No subjects added yet.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if all_students %}
+        <h3>Hogwarts Student Registry</h3>
+        <ul>
+            {% for student in all_students %}
+                <li>{{ student }}</li>
+            {% empty %}
+                <li>No students added yet.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <a href="{% url 'administration:index' %}">Back to school administration home</a>
+{% endblock %}
