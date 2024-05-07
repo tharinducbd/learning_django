@@ -28,6 +28,7 @@ class House(models.Model):
     founder = models.CharField(max_length=64)
     emblem = models.CharField(max_length=64)
     head = models.OneToOneField(Teacher, on_delete=models.CASCADE)
+    homeroom = models.CharField(max_length=32)
 
     class Meta:
         ordering = ["name",]
