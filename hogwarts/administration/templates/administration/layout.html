@@ -13,9 +13,10 @@
 
         <div class="mynavbar">
             <a href="{% url 'administration:index' %}"><button>Home</button></a>
-            <a href="{% url 'administration:index' %}"><button>Houses</button></a>
-            <a href="{% url 'administration:index' %}"><button>Teachers</button></a>
-            <a href="{% url 'administration:index' %}"><button>Students</button></a>
+            <a href="{% url 'administration:houses' %}"><button>Houses</button></a>
+            <a href="{% url 'administration:teachers' %}"><button>Teachers</button></a>
+            <a href="{% url 'administration:subjects' %}"><button>Subjects</button></a>
+            <a href="{% url 'administration:students' %}"><button>Students</button></a>
         </div>
 
         {% block body %}
