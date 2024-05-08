@@ -1,5 +1,8 @@
+from typing import Any
+from django.db.models.query import QuerySet
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.views import generic
 
 from .models import House, Student, Subject, Teacher
 
@@ -35,3 +38,35 @@ def models(request, model_name):
         context = {"all_students": students}
 
     return render(request, "administration/models.html", context)
+
+
+class HouseListView(generic.ListView):
+    template_name = 'administration/houses.html'
+    context_object_name = 'all_houses'
+
+    def get_queryset(self) -> QuerySet[Any]:
+        return House.objects.all()
+
+
+class TeacherListView(generic.ListView):
+    template_name = 'administration/teachers.html'
+    context_object_name = 'all_teachers'
+
+    def get_queryset(self) -> QuerySet[Any]:
+        return Teacher.objects.all()
+
+
+class SubjectListView(generic.ListView):
+    template_name = 'administration/subjects.html'
+    context_object_name = 'all_subjects'
+
+    def get_queryset(self) -> QuerySet[Any]:
+        return Subject.objects.all()
+
+
+class StudentListView(generic.ListView):
+    template_name = 'administration/students.html'
+    context_object_name = 'all_students'
+
+    def get_queryset(self) -> QuerySet[Any]:
+        return Student.objects.all()
