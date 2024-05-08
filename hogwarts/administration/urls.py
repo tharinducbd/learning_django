@@ -6,4 +6,8 @@ app_name = "administration"
 urlpatterns = [
     path("", views.index, name="index"),
     path("models/<str:model_name>", views.models, name="models"),
+    path("houses/", views.HouseListView.as_view(), name="houses"),
+    path("teachers/", views.TeacherListView.as_view(), name="teachers"),
+    path("subjects/", views.SubjectListView.as_view(), name="subjects"),
+    path("students/", views.StudentListView.as_view(), name="students"),
 ]
