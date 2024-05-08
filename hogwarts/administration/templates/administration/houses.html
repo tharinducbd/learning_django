@@ -1,0 +1,11 @@
+{% extends 'administration/layout.html' %}
+
+{% block body %}
+
+    <ul>
+        {% for house in all_houses %}
+            <li><a href="">{{ house }}</a></li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'administration/layout.html' %}
+
+{% block body %}
+
+    <ul>
+        {% for student in all_students %}
+            <li><a href="">{{ student }}</a></li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

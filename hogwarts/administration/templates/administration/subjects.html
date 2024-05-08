@@ -1,0 +1,11 @@
+{% extends 'administration/layout.html' %}
+
+{% block body %}
+
+    <ul>
+        {% for subject in all_subjects %}
+            <li><a href="">{{ subject }}</a></li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

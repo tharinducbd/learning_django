@@ -1,0 +1,13 @@
+{% extends 'administration/layout.html' %}
+
+{% block body %}
+
+    <ul>
+        {% for teacher in all_teachers %}
+            <li><a href="">{{ teacher }}</a></li>
+        {% endfor %}
+    </ul>
+
+
+
+{% endblock %}
