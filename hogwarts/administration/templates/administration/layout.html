@@ -1,12 +1,25 @@
 {% load static %}
+
 <!DOCTYPE html>
+
 <html>
+
     <head>
         <title>Hogwarts - {% block title %}{% endblock %}</title>
         <link rel="stylesheet" href="{% static 'administration/style.css' %}">
     </head>
+
     <body>
+
+        <div class="mynavbar">
+            <a href="{% url 'administration:index' %}"><button>Home</button></a>
+            <a href="{% url 'administration:index' %}"><button>Houses</button></a>
+            <a href="{% url 'administration:index' %}"><button>Teachers</button></a>
+            <a href="{% url 'administration:index' %}"><button>Students</button></a>
+        </div>
+
         {% block body %}
         {% endblock %}
     </body>
+
 </html>

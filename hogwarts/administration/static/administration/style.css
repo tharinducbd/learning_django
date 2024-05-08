@@ -1,6 +1,22 @@
+.mynavbar > a > button {
+    padding: 5px;
+    font-family: cursive;
+    font-style: italic;
+    font-size: medium;
+    background-color: rgb(168, 199, 207);
+}
+
+
 h3 {
     color: rgb(2, 2, 209);
+    font-family:cursive;
 }
+
+
+ul > li {
+    font-family: cursive;
+}
+
 
 body {
     background-color:rgb(172, 230, 230);
