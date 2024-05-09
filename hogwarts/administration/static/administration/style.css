@@ -12,6 +12,11 @@ h3 {
     font-family:cursive;
 }
 
+h4 {
+    color: rgb(194, 25, 194);
+    font-family: cursive;
+}
+
 
 ul > li {
     font-family: cursive;
