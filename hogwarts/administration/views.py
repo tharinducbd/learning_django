@@ -41,7 +41,7 @@ def models(request, model_name):
 
 
 class HouseListView(generic.ListView):
-    template_name = 'administration/houses.html'
+    template_name = 'administration/list_houses.html'
     context_object_name = 'all_houses'
 
     def get_queryset(self) -> QuerySet[Any]:
@@ -49,7 +49,7 @@ class HouseListView(generic.ListView):
 
 
 class TeacherListView(generic.ListView):
-    template_name = 'administration/teachers.html'
+    template_name = 'administration/list_teachers.html'
     context_object_name = 'all_teachers'
 
     def get_queryset(self) -> QuerySet[Any]:
@@ -57,7 +57,7 @@ class TeacherListView(generic.ListView):
 
 
 class SubjectListView(generic.ListView):
-    template_name = 'administration/subjects.html'
+    template_name = 'administration/list_subjects.html'
     context_object_name = 'all_subjects'
 
     def get_queryset(self) -> QuerySet[Any]:
@@ -65,8 +65,13 @@ class SubjectListView(generic.ListView):
 
 
 class StudentListView(generic.ListView):
-    template_name = 'administration/students.html'
+    template_name = 'administration/list_students.html'
     context_object_name = 'all_students'
 
     def get_queryset(self) -> QuerySet[Any]:
         return Student.objects.all()
+
+
+# class HouseDetailView(generic.DetailView):
+#     model = House
+#     template_name = 'administration/detail_house.html'
