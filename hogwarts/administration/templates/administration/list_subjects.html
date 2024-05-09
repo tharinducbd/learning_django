@@ -8,7 +8,7 @@
 
     <ul>
         {% for subject in all_subjects %}
-            <li><a href="">{{ subject }}</a></li>
+            <li><a href="{% url 'administration:subject_info' pk=subject.id %}">{{ subject }}</a></li>
         {% endfor %}
     </ul>
 

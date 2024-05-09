@@ -1,0 +1,29 @@
+{% extends 'administration/layout.html' %}
+
+{% block title %}
+    {{ subject.name }}
+{% endblock title %}
+
+{% block body %}
+
+    <h3>{{ subject }}</h3>
+
+    <h4>Teachers</h4>
+    <ul>
+        {% for teacher in subject.teacher_set.all  %}
+            <li>{{ teacher }}</li>
+        {% empty %}
+            <li>No teachers to teach {{ subject }}!</li>
+        {% endfor %}
+    </ul>
+
+    <h4>Students</h4>
+    <ul>
+        {% for student in subject.student_set.all  %}
+            <li>{{ student }}</li>
+        {% empty %}
+            <li>No students have enrolled!</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
