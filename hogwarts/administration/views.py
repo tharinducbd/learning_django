@@ -75,3 +75,8 @@ class StudentListView(generic.ListView):
 class HouseDetailView(generic.DetailView):
     model = House
     template_name = 'administration/detail_house.html'
+
+
+class StudentDetailView(generic.DetailView):
+    model = Student
+    template_name = 'administration/detail_student.html'
