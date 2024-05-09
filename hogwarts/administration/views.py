@@ -72,6 +72,6 @@ class StudentListView(generic.ListView):
         return Student.objects.all()
 
 
-# class HouseDetailView(generic.DetailView):
-#     model = House
-#     template_name = 'administration/detail_house.html'
+class HouseDetailView(generic.DetailView):
+    model = House
+    template_name = 'administration/detail_house.html'
