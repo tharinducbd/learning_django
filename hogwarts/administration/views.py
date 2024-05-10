@@ -85,3 +85,8 @@ class StudentDetailView(generic.DetailView):
 class SubjectDetailView(generic.DeleteView):
     model = Subject
     template_name = 'administration/detail_subject.html'
+
+
+class TeacherDetailView(generic.DetailView):
+    model = Teacher
+    template_name = 'administration/detail_house.html'
