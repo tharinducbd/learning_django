@@ -25,7 +25,14 @@
 
     <ul>
         {% for subject in teacher.subjects.all %}
+            {% for student in subject.student_set.all %}
+                <li>{{ student }}</li>
+            {% empty %}
+                <li>No students under supervision.</li>
+            {% endfor %}
+        {% empty %}
+            <li>No subjects assigned at present.</li>
+        {% endfor %}
     </ul>
-
 
 {% endblock %}
