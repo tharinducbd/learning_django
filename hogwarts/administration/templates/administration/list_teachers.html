@@ -8,10 +8,8 @@
 
     <ul>
         {% for teacher in all_teachers %}
-            <li><a href="">{{ teacher }}</a></li>
+            <li><a href="{% url 'administration:teacher_info' pk=teacher.pk %}">{{ teacher }}</a></li>
         {% endfor %}
     </ul>
-
-
 
 {% endblock %}
