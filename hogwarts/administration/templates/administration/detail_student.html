@@ -29,7 +29,7 @@
     <ul>
         {% for subject in student.subjects.all %}
             {% for teacher in subject.teacher_set.all %}
-                <li>{{ teacher }}</li>
+                <li>{{ teacher }} ({{subject}}) </li>
             {% empty %}
                 <li>No teachers to teach {{ subject }}</li>
             {% endfor %}
