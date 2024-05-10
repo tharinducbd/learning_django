@@ -28,11 +28,14 @@
     <h4>Assigned teachers</h4>
     <ul>
         {% for subject in student.subjects.all %}
+        <li>{{ subject }}</li>
+        <ul>
             {% for teacher in subject.teacher_set.all %}
                 <li>{{ teacher }} ({{subject}}) </li>
             {% empty %}
                 <li>No teachers to teach {{ subject }}</li>
             {% endfor %}
+        </ul>
         {% empty %}
             <li>You need to enrol in some subjects first!</li>
         {% endfor %}
