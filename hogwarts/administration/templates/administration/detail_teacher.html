@@ -1,0 +1,31 @@
+{% extends 'administration/layout.html' %}
+
+{% block title %}
+    {{ teacher.name }}
+{% endblock %}
+
+
+{% block body %}
+
+    <h3>Staff member profile: Professor {{ teacher.name }}</h3>
+
+    <ul>
+        <li>Age: {{ teacher.age }}</li>
+        <li>Subjects taught:</li>
+        <ul>
+            {% for subject in teacher.subjects.all %}
+                <li>{{ subject }}</li>
+            {% empty %}
+                <li>No teaching any subjects at present</li>
+            {% endfor %}
+        </ul>
+    </ul>
+
+    <h4>Students under supervision</h4>
+
+    <ul>
+        {% for subject in teacher.subjects.all %}
+    </ul>
+
+
+{% endblock %}
