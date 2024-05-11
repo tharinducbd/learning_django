@@ -10,7 +10,7 @@
         <h3>Houses of Hogwarts</h3>
         <ul>
             {% for house in all_houses %}
-                <li>{{ house }}</li>
+                <li><a href="{% url 'administration:fbv_house' house_id=house.id %}">{{ house }}</a></li>
             {% empty %}
                 <li>No houses added yet.</li>
             {% endfor %}
