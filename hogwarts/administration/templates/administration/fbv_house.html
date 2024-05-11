@@ -1,0 +1,28 @@
+{% extends 'administration/layout.html' %}
+
+{% block title %}
+    {{ house.name }}
+{% endblock %}
+
+
+{% block body %}
+
+    <h3>{{ house.name }}</h3>
+
+    <ul>
+        <li>Founder: {{ house.founder }}</li>
+        <li>Emblem: {{ house.emblem }}</li>
+        <li>Common room: {{ house.homeroom }}</li>
+        <li>Head: {{ house.head }}</li>
+    </ul>
+
+    <h4>List of students</h4>
+    <ul>
+        {% for student in house.students_of_house.all %}
+            <li>{{ student }}</li>
+        {% empty %}
+            <li>No students yet</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
