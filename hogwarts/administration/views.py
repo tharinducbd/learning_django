@@ -1,7 +1,7 @@
 from typing import Any
 from django.db.models.query import QuerySet
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.views import generic
 
 from .models import House, Student, Subject, Teacher
@@ -93,7 +93,8 @@ class TeacherDetailView(generic.DetailView):
 
 
 def house_fbv(request, house_id):
-    house = House.objects.get(id=house_id)
+    # house = House.objects.get(id=house_id)
+    house = get_object_or_404(House, id=house_id)
     return render(request, "administration/fbv_house.html", {
         "house": house
     })
