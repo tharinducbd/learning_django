@@ -1,11 +1,6 @@
-.mynavbar > a > button {
-    padding: 5px;
-    font-family: cursive;
-    font-style: italic;
-    font-size: medium;
-    background-color: rgb(168, 199, 207);
+body {
+    background-color:rgb(172, 230, 230);
 }
-
 
 h3 {
     color: rgb(2, 2, 209);
@@ -17,12 +12,30 @@ h4 {
     font-family: cursive;
 }
 
+a {
+    font-family: cursive;
+}
+a:link {
+    color: rgb(41, 4, 252);
+}
+a:visited {
+    color: rgb(17, 64, 167);
+}
+a:hover {
+    color: rgb(64, 99, 12);
+}
+a:active {
+    color: rgb(71, 231, 8);
+}
 
 ul > li {
     font-family: cursive;
 }
 
-
-body {
-    background-color:rgb(172, 230, 230);
+.mynavbar > a > button {
+    padding: 5px;
+    font-family: cursive;
+    font-style: italic;
+    font-size: medium;
+    background-color: rgb(168, 199, 207);
 }
