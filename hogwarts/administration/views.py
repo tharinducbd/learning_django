@@ -90,3 +90,10 @@ class SubjectDetailView(generic.DeleteView):
 class TeacherDetailView(generic.DetailView):
     model = Teacher
     template_name = 'administration/detail_teacher.html'
+
+
+def house_fbv(request, house_id):
+    house = House.objects.get(id=house_id)
+    return render(request, "administration/fbv_house.html", {
+        "house": house
+    })
