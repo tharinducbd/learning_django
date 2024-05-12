@@ -98,3 +98,31 @@ def house_fbv(request, house_id):
     return render(request, "administration/fbv_house.html", {
         "house": house
     })
+
+
+def student_fbv(request, student_id):
+    student = get_object_or_404(Student, id=student_id)
+
+    student_house = student.house
+    student_subjects = student.subjects.all()
+
+    unique_teachers, teacher_not_available = [], []
+
+    for subject in student.subjects.all():
+        if len(subject.teacher_set.all()) == 0:
+            teacher_not_available.append(subject)
+            continue
+        else:
+            for teacher in subject.teacher_set.all():
+                if not teacher in unique_teachers:
+                    unique_teachers.append(teacher)
+
+    context = {
+        'student': student,
+        'student_house': student_house,
+        'student_subjects': student_subjects,
+        'unique_teachers': unique_teachers,
+        'teacher_not_available': teacher_not_available,
+    }
+
+    return render(request, 'administration/fbv_student.html', context)
