@@ -43,7 +43,7 @@
         <h3>Hogwarts Student Registry</h3>
         <ul>
             {% for student in all_students %}
-                <li>{{ student }}</li>
+                <li><a href="{% url 'administration:fbv_student' student_id=student.id %}">{{ student }}</a></li>
             {% empty %}
                 <li>No students added yet.</li>
             {% endfor %}
