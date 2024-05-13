@@ -1,5 +1,8 @@
 body {
+    background: url("images/hogwarts_logo.png") no-repeat;
     background-color:rgb(172, 230, 230);
+    background-position: 1600px 60px;
+    background-size: 320px 210px;
 }
 
 h3 {
