@@ -35,6 +35,10 @@ ul > li {
     font-family: cursive;
 }
 
+.mynavbar {
+    margin-bottom: 20px;
+}
+
 .mynavbar > a > button {
     padding: 5px;
     font-family: cursive;
