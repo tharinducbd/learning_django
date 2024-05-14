@@ -16,4 +16,5 @@ urlpatterns = [
     path("teachers/<int:pk>", views.TeacherDetailView.as_view(), name="teacher_info"),
     path("fbv/house/<int:house_id>", views.house_fbv, name="fbv_house"),
     path("fbv/student/<int:student_id>", views.student_fbv, name="fbv_student"),
+    path("form/", views.form_test, name="form_test"),
 ]

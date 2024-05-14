@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.views import generic
 
+from .forms import TestForm
 from .models import House, Student, Subject, Teacher
 
 
@@ -126,3 +127,10 @@ def student_fbv(request, student_id):
     }
 
     return render(request, 'administration/fbv_student.html', context)
+
+
+def form_test(request):
+    context = {
+        "test_form": TestForm(),
+    }
+    return render(request, "administration/0_test_form.html", context)

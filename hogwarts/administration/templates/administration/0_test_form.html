@@ -1,0 +1,15 @@
+{% extends 'administration/layout.html' %}
+
+{% block title %}
+    Test Form
+{% endblock title %}
+
+{% block body %}
+
+    <form action="{% url 'administration:form_test' %}" method="post">
+        {% csrf_token %}
+        {{ test_form }}
+        <input type="submit" value="Submit Test" size="300">
+    </form>
+
+{% endblock %}
