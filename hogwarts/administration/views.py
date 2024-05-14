@@ -132,5 +132,7 @@ def student_fbv(request, student_id):
 def form_test(request):
     context = {
         "test_form": TestForm(),
+        "houses": House.objects.all(),
+        "subjects": Subject.objects.all(),
     }
     return render(request, "administration/0_test_form.html", context)
