@@ -129,10 +129,16 @@ def student_fbv(request, student_id):
     return render(request, 'administration/fbv_student.html', context)
 
 
-def form_test(request):
+def add_student_html(request):
     context = {
-        "test_form": TestForm(),
         "houses": House.objects.all(),
         "subjects": Subject.objects.all(),
     }
-    return render(request, "administration/0_test_form.html", context)
+    return render(request, "administration/add_student_html.html", context)
+
+
+def add_student(request):
+    context = {
+        "test_form": TestForm(),
+    }
+    return render(request, "administration/add_student.html", context)
