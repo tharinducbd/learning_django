@@ -1,0 +1,34 @@
+{% extends 'administration/layout.html' %}
+
+{% block title %}
+    Test Form
+{% endblock title %}
+
+{% block body %}
+
+    <form action="{% url 'administration:add_student_1' %}" method="post">
+        {% csrf_token %}
+
+        <label for="name">Full Name</label>
+        <input type="text" name="name" id="" size="60px">
+        <br><br>
+
+        <label for="house">House</label>
+        <select name="house" id="house" size="1">
+            {% for house in houses %}
+                <option value="{{ house.id }}">{{ house.name }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <label for="subjects">Subjects</label>
+        <select name="subjects" id="subjects" multiple size="13">
+            {% for subject in subjects %}
+                <option value="{{ subject.id }}">{{ subject.name }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <input type="submit" value="Add student" size="300">
+    </form>
+
+{% endblock %}
