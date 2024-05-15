@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.views import generic
 
-from .forms import TestForm
+from .forms import AddStudentForm
 from .models import House, Student, Subject, Teacher
 
 
@@ -139,6 +139,6 @@ def add_student_html(request):
 
 def add_student(request):
     context = {
-        "test_form": TestForm(),
+        "add_student_form": AddStudentForm(),
     }
     return render(request, "administration/add_student.html", context)

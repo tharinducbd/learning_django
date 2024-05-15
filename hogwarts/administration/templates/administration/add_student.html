@@ -6,10 +6,12 @@
 
 {% block body %}
 
+    <h3>Register new student</h3>
+
     <form action="{% url 'administration:add_student' %}" method="post">
         {% csrf_token %}
 
-        {{ test_form.as_p }}
+        {{ add_student_form.as_p }}
 
         <br><br>
         <input type="submit" value="Add student" size="300">
