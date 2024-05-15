@@ -6,10 +6,15 @@
 
 {% block body %}
 
+    <h3>Students of Howgwarts</h3>
+
     <ul>
         {% for student in all_students %}
             <li><a href="{% url 'administration:student_info' pk=student.pk %}">{{ student }}</a></li>
         {% endfor %}
     </ul>
+
+    <a href="{% url 'administration:add_student' %}"><button>Add new student</button></a>
+    
 
 {% endblock %}
