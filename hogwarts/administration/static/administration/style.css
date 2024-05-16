@@ -39,12 +39,24 @@ ul > li {
     margin-bottom: 20px;
 }
 
+
 .mynavbar > a > button {
     padding: 5px;
     font-family: cursive;
     font-style: italic;
     font-size: medium;
     background-color: rgb(168, 199, 207);
+}
+
+a > button {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: cursive;
+    font-style: italic;
+    font-size: medium;
+    background-color: rgb(4, 153, 128);
 }
 
 .wrapper {
