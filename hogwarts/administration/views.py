@@ -148,6 +148,7 @@ def add_student(request):
         for sub_id in subject_ids:
             selected_subjects.append(Subject.objects.get(id=sub_id))
 
+
         new_student = Student.objects.create(name=name, house=house, subjects=selected_subjects)
         new_student.save()
 
