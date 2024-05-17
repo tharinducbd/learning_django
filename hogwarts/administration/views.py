@@ -142,3 +142,8 @@ def add_student(request):
         "add_student_form": AddStudentForm(),
     }
     return render(request, "administration/add_student.html", context)
+
+
+def update_student(request):
+    # TODO: add/remove subjects - use objects.exclude()
+    pass
