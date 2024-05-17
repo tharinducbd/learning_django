@@ -1,7 +1,8 @@
 from typing import Any
 from django.db.models.query import QuerySet
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
 from django.views import generic
 
 from .forms import AddStudentForm
@@ -138,6 +139,20 @@ def add_student_html(request):
 
 
 def add_student(request):
+    if request.method == "POST":
+        name = request.POST["name"]
+        house = House.objects.get(id=int(request.POST["house"]))
+        subject_ids = request.POST["subjects"]
+
+        selected_subjects = []
+        for sub_id in subject_ids:
+            selected_subjects.append(Subject.objects.get(id=sub_id))
+
+        new_student = Student.objects.create(name=name, house=house, subjects=selected_subjects)
+        new_student.save()
+
+        return HttpResponseRedirect(reverse("administration:students"))
+
     context = {
         "add_student_form": AddStudentForm(),
     }
