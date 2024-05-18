@@ -144,12 +144,11 @@ def add_student(request):
         house = House.objects.get(id=int(request.POST["house"]))
         subject_ids = request.POST["subjects"]
 
-        selected_subjects = []
+        new_student = Student(name=name, house=house)
+        new_student.save()
+
         for sub_id in subject_ids:
-            selected_subjects.append(Subject.objects.get(id=sub_id))
-
-
-        new_student = Student.objects.create(name=name, house=house, subjects=selected_subjects)
+            new_student.subjects.add(Subject.objects.get(id=sub_id))
         new_student.save()
 
         return HttpResponseRedirect(reverse("administration:students"))
