@@ -140,18 +140,18 @@ def add_student_html(request):
 
 def add_student(request):
     if request.method == "POST":
+        print(request.POST)
         name = request.POST["name"]
         house = House.objects.get(id=int(request.POST["house"]))
-        subject_ids = request.POST["subjects"]
-        print(subject_ids)
+        subjects = request.POST["subjects"]
 
         new_student = Student(name=name, house=house)
         new_student.save()
 
-        for sub_id in subject_ids:
-            new_student.subjects.add(Subject.objects.get(id=sub_id))
-        new_student.save()
+        for sub in subjects:
+            new_student.subjects.add(Subject.objects.get(id=sub))
 
+        new_student.save()
         return HttpResponseRedirect(reverse("administration:students"))
 
     context = {
