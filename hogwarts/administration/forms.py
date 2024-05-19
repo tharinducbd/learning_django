@@ -9,7 +9,7 @@ class HouseModelChoiceField(forms.ModelChoiceField):
         return f"{obj.name} ({obj.emblem})"
 
 
-class SubjectMultipleModelChoiceField(forms.ModelChoiceField):
+class SubjectModelMultipleChoiceField(forms.ModelMultipleChoiceField):
     def label_from_instance(self, obj: Model) -> str:
         return f"{obj.name} {obj.id}"
 
@@ -20,6 +20,6 @@ class AddStudentForm(forms.Form):
                                    empty_label="Select the House",
                                    widget=forms.RadioSelect,
                                    )
-    subjects = SubjectMultipleModelChoiceField(queryset=Subject.objects.all(),
-                                               widget=forms.RadioSelect,
+    subjects = SubjectModelMultipleChoiceField(queryset=Subject.objects.all(),
+                                               widget=forms.CheckboxSelectMultiple,
                                                )
