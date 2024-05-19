@@ -143,6 +143,7 @@ def add_student(request):
         name = request.POST["name"]
         house = House.objects.get(id=int(request.POST["house"]))
         subject_ids = request.POST["subjects"]
+        print(subject_ids)
 
         new_student = Student(name=name, house=house)
         new_student.save()
