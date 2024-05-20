@@ -138,51 +138,50 @@ def add_student_html(request):
     return render(request, "administration/add_student_html.html", context)
 
 
-# def add_student(request):
-#     if request.method == "POST":
-#         print(request.POST)
-#         name = request.POST["name"]
-#         house = House.objects.get(id=int(request.POST["house"]))
-#         subject_ids = request.POST["subjects"]
-
-#         new_student = Student(name=name, house=house)
-#         new_student.save()
-
-#         for sub_id in subject_ids:
-#             new_student.subjects.add(Subject.objects.get(id=int(sub_id)))
-
-#         new_student.save()
-#         return HttpResponseRedirect(reverse("administration:students"))
-
-#     context = {
-#         "add_student_form": AddStudentForm(),
-#     }
-#     return render(request, "administration/add_student.html", context)
-
-
 def add_student(request):
     if request.method == "POST":
-        form = AddStudentForm(request.POST)
+        name = request.POST["name"]
+        house = House.objects.get(id=int(request.POST["house"]))
+        subject_ids = request.POST.getlist("subjects", default=[])
 
-        if form.is_valid():
+        new_student = Student(name=name, house=house)
+        new_student.save()
 
-            name = form.cleaned_data["name"]
-            house = form.cleaned_data["house"]
-            subject_ids = form.cleaned_data["subjects"]
+        for sub_id in subject_ids:
+            new_student.subjects.add(Subject.objects.get(id=int(sub_id)))
 
-            new_student = Student(name=name, house=house)
-            new_student.save()
-
-            for sub_id in subject_ids:
-                new_student.subjects.add(Subject.objects.get(id=sub_id.id))
-
-            new_student.save()
-            return HttpResponseRedirect(reverse("administration:students"))
+        new_student.save()
+        return HttpResponseRedirect(reverse("administration:students"))
 
     context = {
         "add_student_form": AddStudentForm(),
     }
     return render(request, "administration/add_student.html", context)
+
+
+# def add_student(request):
+#     if request.method == "POST":
+#         form = AddStudentForm(request.POST)
+
+#         if form.is_valid():
+
+#             name = form.cleaned_data["name"]
+#             house = form.cleaned_data["house"]
+#             subject_ids = form.cleaned_data["subjects"]
+
+#             new_student = Student(name=name, house=house)
+#             new_student.save()
+
+#             for sub_id in subject_ids:
+#                 new_student.subjects.add(Subject.objects.get(id=sub_id.id))
+
+#             new_student.save()
+#             return HttpResponseRedirect(reverse("administration:students"))
+
+#     context = {
+#         "add_student_form": AddStudentForm(),
+#     }
+#     return render(request, "administration/add_student.html", context)
 
 
 def update_student(request):
