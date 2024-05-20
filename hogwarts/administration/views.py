@@ -138,6 +138,7 @@ def add_student_html(request):
     return render(request, "administration/add_student_html.html", context)
 
 
+# This works, but the following is better.
 def add_student(request):
     if request.method == "POST":
         name = request.POST["name"]
