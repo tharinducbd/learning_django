@@ -184,6 +184,6 @@ def add_student(request):
     return render(request, "administration/add_student.html", context)
 
 
-def update_student(request):
+def update_student(request, sudent_id):
     # TODO: add/remove subjects - use objects.exclude()
     pass
