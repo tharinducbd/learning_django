@@ -18,4 +18,5 @@ urlpatterns = [
     path("fbv/student/<int:student_id>", views.student_fbv, name="fbv_student"),
     path("students/add_student_html/", views.add_student_html, name="add_student_html"),
     path("students/add/", views.add_student, name="add_student"),
+    # path("students/student_id/update", views.update_student, name="update_student"),
 ]

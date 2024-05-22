@@ -184,6 +184,16 @@ def add_student(request):
     return render(request, "administration/add_student.html", context)
 
 
-def update_student(request, sudent_id):
+def update_student(request, student_id):
     # TODO: add/remove subjects - use objects.exclude()
-    pass
+    if request.method == 'POST':
+        pass
+
+    student = Student.objects.get(id=student_id)
+    non_enrolled_subjects = Subject.objects.exclude(student.subjects)
+
+    context = {
+        "non_enrolled_subjects": non_enrolled_subjects,
+    }
+    
+    return render(request, "administration/add_student.html", context)
