@@ -119,12 +119,19 @@ def student_fbv(request, student_id):
                 if not teacher in unique_teachers:
                     unique_teachers.append(teacher)
 
+    non_registered_subjects = Subject.objects.exclude(student=student).all()
+    no_unregistered_subjects = False
+    if len(non_registered_subjects) == 0:
+        no_unregistered_subjects = True
+
     context = {
         'student': student,
         'student_house': student_house,
         'student_subjects': student_subjects,
         'unique_teachers': unique_teachers,
         'teacher_not_available': teacher_not_available,
+        'non_registered_subjects': non_registered_subjects,
+        'no_unregistered_subjects': no_unregistered_subjects,
     }
 
     return render(request, 'administration/fbv_student.html', context)
@@ -185,15 +192,26 @@ def add_student(request):
 
 
 def update_student(request, student_id):
-    # TODO: add/remove subjects - use objects.exclude()
     if request.method == 'POST':
-        pass
+        student = Student.objects.get(id=student_id)
 
-    student = Student.objects.get(id=student_id)
-    non_enrolled_subjects = Subject.objects.exclude(student.subjects)
+        new_subject_id = int(request.POST["new_subject"])
+        new_subject = Subject.objects.get(id=new_subject_id)
+        new_subject.student_set.add(student)
 
-    context = {
-        "non_enrolled_subjects": non_enrolled_subjects,
-    }
+        return HttpResponseRedirect(reverse("administration:fbv_student", args=(student_id,)))
+
+
+# def update_student(request, student_id):
+#     # TODO: add/remove subjects - use objects.exclude()
+#     if request.method == 'POST':
+#         pass
+
+#     student = Student.objects.get(id=student_id)
+#     non_enrolled_subjects = Subject.objects.exclude(student.subjects)
+
+#     context = {
+#         "non_enrolled_subjects": non_enrolled_subjects,
+#     }
     
-    return render(request, "administration/add_student.html", context)
+#     return render(request, "administration/add_student.html", context)
