@@ -40,4 +40,21 @@
     </ul>
 
     <a href="{% url 'administration:models' model_name='students' %}">Back to students</a>
+
+    <h4>Enroll in new subject</h4>
+
+    {% if not no_unregistered_subjects %}
+        <form action="{% url 'administration:update_student' student_id=student.id %}" method="post">
+            {% csrf_token %}
+            <select name="new_subject">
+                {% for subject in non_registered_subjects %}
+                    <option value="{{ subject.id }}">{{ subject }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit">
+        </form>
+    {% else %}
+        <p>Already enrolled in all subjects!</p>
+    {% endif %}
+
 {% endblock %}
