@@ -39,8 +39,6 @@
         {% endfor %}
     </ul>
 
-    <a href="{% url 'administration:models' model_name='students' %}">Back to students</a>
-
     <h4>Enroll in new subject</h4>
 
     {% if not no_unregistered_subjects %}
@@ -56,5 +54,7 @@
     {% else %}
         <p>Already enrolled in all subjects!</p>
     {% endif %}
+
+    <a href="{% url 'administration:models' model_name='students' %}">Back to students</a>
 
 {% endblock %}
