@@ -24,8 +24,8 @@ class HouseAdmin(admin.ModelAdmin):
 
 
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ("name", "house", "id",) # To control the order of fields in list view
-    fields = ("name", "house", "subjects",) # To control the field order within an object view
+    list_display = ("name", "house", "id",) # Table header order in list view
+    fields = ("name", "house", "subjects",) # Field order within object view
     filter_horizontal = ("subjects",)
 
 
