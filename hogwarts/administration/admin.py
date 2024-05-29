@@ -3,6 +3,11 @@ from django.contrib import admin
 from .models import House, Student, Subject, Teacher
 
 
+class StudentInline(admin.StackedInline):
+    model = Student
+    extra = -3
+
+
 class HouseAdmin(admin.ModelAdmin):
     list_display = ("id", "name", "founder", "emblem", "head", "homeroom",)
     fieldsets = [
@@ -10,6 +15,7 @@ class HouseAdmin(admin.ModelAdmin):
         ("History", {"fields": ["founder", "emblem",]}),
         (None, {"fields": ["homeroom", "head"]}),
     ]
+    inlines = [StudentInline]
 
 
 class StudentAdmin(admin.ModelAdmin):
