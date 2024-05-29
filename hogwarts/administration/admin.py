@@ -3,9 +3,14 @@ from django.contrib import admin
 from .models import House, Student, Subject, Teacher
 
 
-class StudentInline(admin.StackedInline):
+# class StudentInline(admin.StackedInline):
+#     model = Student
+#     extra = -3
+
+
+class StudentInline(admin.TabularInline):
     model = Student
-    extra = -3
+    extra = 0
 
 
 class HouseAdmin(admin.ModelAdmin):
