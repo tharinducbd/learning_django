@@ -5,10 +5,16 @@ from .models import House, Student, Subject, Teacher
 
 class HouseAdmin(admin.ModelAdmin):
     list_display = ("id", "name", "founder", "emblem", "head", "homeroom",)
+    fieldsets = [
+        (None, {"fields": ["name",]}),
+        ("History", {"fields": ["founder", "emblem",]}),
+        (None, {"fields": ["homeroom", "head"]}),
+    ]
 
 
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ("name", "house", "id",)
+    list_display = ("name", "house", "id",) # To control the order of fields in list view
+    fields = ("name", "house", "subjects",) # To control the field order within an object view
     filter_horizontal = ("subjects",)
 
 
