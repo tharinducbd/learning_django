@@ -14,7 +14,10 @@ class StudentInline(admin.TabularInline):
 
 
 class HouseAdmin(admin.ModelAdmin):
+    # Customizations for the object list page
     list_display = ("id", "name", "founder", "emblem", "head", "homeroom",)
+
+    # Customizations for a single object detail page
     fieldsets = [
         (None, {"fields": ["name",]}),
         ("History", {"fields": ["founder", "emblem",]}),
@@ -24,7 +27,10 @@ class HouseAdmin(admin.ModelAdmin):
 
 
 class StudentAdmin(admin.ModelAdmin):
+    # Customizations for the object list page
     list_display = ("name", "house", "id",) # Table header order in list view
+
+    # Customizations for a single object detail page
     fields = ("name", "house", "subjects",) # Field order within object view
     filter_horizontal = ("subjects",)
 
