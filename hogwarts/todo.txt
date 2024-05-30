@@ -1,0 +1,15 @@
+# An app for Events
+
+## Create models with methods
+    was_published_recently(self)
+
+## Use time: 
+    from django.utils import timezone
+    import datetime
+
+## Use @admin.display() decorators for customizing the way methods are displayed in list view
+    + Also try 
+
+## Write tests for the methods
+    class <model_name>ModelTests(Testcase):
+        def test_was_published_recently_with_future_question(self):
