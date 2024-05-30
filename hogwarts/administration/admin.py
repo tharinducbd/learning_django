@@ -29,7 +29,8 @@ class HouseAdmin(admin.ModelAdmin):
 class StudentAdmin(admin.ModelAdmin):
     # Customizations for the object list page
     list_display = ("name", "house", "id",) # Table header order in list view
-    list_filter = ("house",) # Filter menu for a specific field
+    list_filter = ("house",) # Filter sidebar for a specific field
+    search_fields = ("name",)
 
     # Customizations for a single object detail page
     fields = ("name", "house", "subjects",) # Field order within object view
