@@ -200,6 +200,3 @@ def update_student(request, student_id):
         new_subject.student_set.add(student)
 
         return HttpResponseRedirect(reverse("administration:fbv_student", args=(student_id,)))
-
-
-# Implement the login view, and learn login_required stuff.
