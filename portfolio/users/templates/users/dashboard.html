@@ -4,4 +4,18 @@
 
     Hello, {{ user.username.capitalize|default:'Guest' }}!
 
+    <ul>
+        <li>First name: {{ user.first_name|default:'Not specified' }}</li>
+        <li>Last name: {{ user.last_name|default:'Not specified' }}</li>
+        <li>Email: {{ user.email|default:'Not provided' }}</li>
+        <li>Password hash: {{ user.password|default:'Not provided' }}</li>
+        <li>Groups: {{ user.groups|default:'Not provided' }}</li>
+        <li>Permissions: {{ user.user_permissions|default:'Not provided' }}</li>
+        <li>Is the user a staff memeber? {{ user.is_staff|default:'Not provided' }}</li>
+        <li>Is the user active? {{ user.is_active|default:'Not provided' }}</li>
+        <li>Is the user a superuser? {{ user.is_superuser|default:'Not provided' }}</li>
+        <li>Last login: {{ user.last_login|default:'Not provided' }}</li>
+        <li>Date joined: {{ user.date_joined|default:'Not provided' }}</li>
+    </ul>
+
 {% endblock %}
