@@ -131,3 +131,4 @@ MEDIA_ROOT = BASE_DIR / "uploads/"
 MEDIA_URL = "media/"
 
 LOGIN_REDIRECT_URL = "users:dashboard"
+# LOGIN_REDIRECT_URL = "/users/dashboard"
