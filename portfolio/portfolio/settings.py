@@ -132,4 +132,4 @@ MEDIA_URL = "media/"
 
 # LOGIN_REDIRECT_URL = "/users/dashboard"
 LOGIN_REDIRECT_URL = "users:dashboard"
-LOGOUT_REDIRECT_URL = "/users/dashboard"
+LOGOUT_REDIRECT_URL = "users:dashboard"
