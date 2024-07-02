@@ -29,3 +29,7 @@ class Genre(models.Model):
                 violation_error_message="Genre already exists (case insensitive match)"
             ),
         ]
+
+
+    class Book(models.Model):
+        pass
