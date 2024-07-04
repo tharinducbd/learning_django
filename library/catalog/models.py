@@ -24,7 +24,7 @@ class Genre(models.Model):
         return reverse('genre-detail', args=[str(self.id)])
 
     class Meta:
-        constrains = [
+        constraints = [
             UniqueConstraint(
                 Lower('name'),
                 name='genre_name_case_insensitive_unique',
