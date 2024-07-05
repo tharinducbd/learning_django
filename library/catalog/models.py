@@ -1,8 +1,8 @@
 from django.db import models
 from django.urls import reverse     # required for get_absolute_url()
 
-from django.db.models import UniqueConstraint   # Constrain fields to unique values
-from django.db.models.functions import Lower    # Returns lower cased value of field
+from django.db.models import UniqueConstraint   # Constraint for unique values
+from django.db.models.functions import Lower    # Returns lower cased value
 
 import uuid     # Required for unique book instances
 
@@ -21,7 +21,7 @@ class Genre(models.Model):
 
     def get_absolute_url(self):
         """Returns the url to access a particular genre instance."""
-        return reverse('genre-detail', args=[str(self.id)])
+        return reverse('genre-detail', args=[str(self.id),])
 
     class Meta:
         constraints = [
@@ -29,6 +29,30 @@ class Genre(models.Model):
                 Lower('name'),
                 name='genre_name_case_insensitive_unique',
                 violation_error_message="Genre already exists (case insensitive match)"
+            ),
+        ]
+
+
+class Language(models.Model):
+    """Model representing a Language(e.g. English, French, Greek etc.)"""
+    name = models.CharField(max_length=200,
+                            unique=True,
+                            help_text="Enter the book's natural language (e.g. English, French etc.)")
+
+    def __str__(self) -> str:
+        """String for representing the Model object."""
+        return self.name
+
+    def get_absolute_url(self):
+        """Returns the url to accessa a particular language instance."""
+        return reverse('language-detail', args=[str(self.id),])
+
+    class Meta:
+        constraints = [
+            UniqueConstraint(
+                Lower('name'),
+                name='language_name_case_insensitive_unique',
+                violation_error_message='Language already exists (case insensitive match)'
             ),
         ]
 
