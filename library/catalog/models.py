@@ -28,7 +28,8 @@ class Genre(models.Model):
             UniqueConstraint(
                 Lower('name'),
                 name='genre_name_case_insensitive_unique',
-                violation_error_message="Genre already exists (case insensitive match)"
+                violation_error_message="Genre already exists "
+                                        "(case insensitive match)"
             ),
         ]
 
@@ -37,7 +38,8 @@ class Language(models.Model):
     """Model representing a Language(e.g. English, French, Greek etc.)"""
     name = models.CharField(max_length=200,
                             unique=True,
-                            help_text="Enter the book's natural language (e.g. English, French etc.)")
+                            help_text="Enter the book's natural language "
+                                      "(e.g. English, French etc.)")
 
     def __str__(self) -> str:
         """String for representing the Model object."""
@@ -52,7 +54,8 @@ class Language(models.Model):
             UniqueConstraint(
                 Lower('name'),
                 name='language_name_case_insensitive_unique',
-                violation_error_message='Language already exists (case insensitive match)'
+                violation_error_message='Language already exists '
+                                        '(case insensitive match)'
             ),
         ]
 
