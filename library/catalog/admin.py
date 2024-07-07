@@ -4,8 +4,11 @@ from .models import Author, Book, BookInstance, Genre, Language
 
 
 class BookAdmin(admin.ModelAdmin):
-    """Customizations for the Model objects list view."""
-    list_display = ["title", "author", "isbn"]
+    # Customizations for the Model objects list view
+    list_display = ["title", "author", "isbn",]
+
+    # Customizations for the object detail view
+    filter_horizontal = ["genre",]
 
 
 admin.site.register(Author)
