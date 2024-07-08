@@ -4,7 +4,7 @@ from .models import Author, Book, BookInstance, Genre, Language
 
 
 class AuthorAdmin(admin.ModelAdmin):
-    list_display = ["get_author", "date_of_birth"]
+    list_display = ["get_author", "date_of_birth", "date_of_death"]
 
     def get_author(self, obj):
         return f"{obj.last_name}, {obj.first_name}"
