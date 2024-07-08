@@ -18,8 +18,11 @@ class BookAdmin(admin.ModelAdmin):
     filter_horizontal = ["genre",]
 
 
-admin.site.register(Author, AuthorAdmin)
-admin.site.register(Book, BookAdmin)
+# admin.site.register(Author)
+# admin.site.register(Book)
 admin.site.register(BookInstance)
 admin.site.register(Genre)
 admin.site.register(Language)
+
+admin.site.register(Author, AuthorAdmin)
+admin.site.register(Book, BookAdmin)
