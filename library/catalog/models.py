@@ -84,6 +84,12 @@ class Book(models.Model):
         help_text="Select a genre for this book",
     )   # each genre can have many books and a book can have multiple genres
 
+    def display_genre(self):
+        """Create a string for the Genre. Required to display in Admin."""
+        return '; '.join(genre.name for genre in self.genre.all()[:3])
+    
+    display_genre.short_description = 'Genre'
+
     language = models.ForeignKey(
         Language, on_delete=models.SET_NULL, null=True
     )
