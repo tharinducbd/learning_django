@@ -10,6 +10,8 @@ class AuthorAdmin(admin.ModelAdmin):
         return f"{obj.last_name}, {obj.first_name}"
 
 
+# @ line Identical to admin.site.register(Book, BookAdmin)
+@admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
     # Customizations for the Model objects list view
     list_display = ["title", "author", "isbn",]
@@ -32,4 +34,3 @@ admin.site.register(Genre)
 admin.site.register(Language)
 
 admin.site.register(Author, AuthorAdmin)
-admin.site.register(Book, BookAdmin)
