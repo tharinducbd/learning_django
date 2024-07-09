@@ -8,6 +8,7 @@ class AuthorAdmin(admin.ModelAdmin):
 
     def get_author(self, obj):
         return f"{obj.last_name}, {obj.first_name}"
+    get_author.short_description = 'Full Name'
 
 
 # @ line Identical to admin.site.register(Book, BookAdmin)
@@ -23,7 +24,12 @@ class BookAdmin(admin.ModelAdmin):
 # @ line Identical to admin.site.register(BookInstance, BookInstanceAdmin)
 @admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
-    pass
+    list_display = ["instance", "status", "due_back"]
+
+    @admin.display(description="Book Instance")
+    def instance(self, obj):
+        return f"{obj.id} ({obj.book})"
+    # instance.short_description = 'Book Instance'
 
 
 # admin.site.register(Author)
