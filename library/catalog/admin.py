@@ -4,7 +4,7 @@ from .models import Author, Book, BookInstance, Genre, Language
 
 
 class AuthorAdmin(admin.ModelAdmin):
-    list_display = ["get_author", "date_of_birth", "date_of_death"]
+    list_display = ["get_author", "date_of_birth", "date_of_death",]
 
     def get_author(self, obj):
         return f"{obj.last_name}, {obj.first_name}"
@@ -14,7 +14,7 @@ class AuthorAdmin(admin.ModelAdmin):
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
     # Customizations for the Model objects list view
-    list_display = ["title", "author", "isbn",]
+    list_display = ("title", "author", "isbn", "display_genre")
 
     # Customizations for the object detail view
     filter_horizontal = ["genre",]
