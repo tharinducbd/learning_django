@@ -29,6 +29,7 @@ class BookAdmin(admin.ModelAdmin):
 # @ line Identical to admin.site.register(BookInstance, BookInstanceAdmin)
 @admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
+    # List view customizations
     list_display = ["instance", "imprint", "status", "due_back",]
     list_filter = ["status", "due_back"]
 
@@ -36,6 +37,16 @@ class BookInstanceAdmin(admin.ModelAdmin):
     def instance(self, obj):
         return f"{obj.id} ({obj.book})"
     # instance.short_description = 'Book Instance'
+
+    # Detail view customizations
+    fieldsets = (
+        (None, {
+            'fields': ('book', 'imprint', 'id')
+        }),
+        ('Availability', {
+            'fields': [('status', 'due_back'),]
+        })
+    )
 
 
 # admin.site.register(Author)
