@@ -8,7 +8,8 @@ class AuthorAdmin(admin.ModelAdmin):
 
     def get_author(self, obj):
         return f"{obj.last_name}, {obj.first_name}"
-    get_author.short_description = 'Full Name'
+    get_author.short_description = 'Full Name'  # To set a column name
+    get_author.admin_order_field = 'last_name'  # To allow sorting
 
 
 # @ line Identical to admin.site.register(Book, BookAdmin)
