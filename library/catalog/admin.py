@@ -24,7 +24,7 @@ class BookAdmin(admin.ModelAdmin):
 # @ line Identical to admin.site.register(BookInstance, BookInstanceAdmin)
 @admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
-    list_display = ["instance", "status", "due_back"]
+    list_display = ["instance", "imprint", "status", "due_back",]
 
     @admin.display(description="Book Instance")
     def instance(self, obj):
