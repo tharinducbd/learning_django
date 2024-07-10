@@ -4,6 +4,7 @@ from .models import Author, Book, BookInstance, Genre, Language
 
 
 class AuthorAdmin(admin.ModelAdmin):
+    # List view customizations
     list_display = ["get_author", "date_of_birth", "date_of_death",]
 
     def get_author(self, obj):
@@ -11,14 +12,17 @@ class AuthorAdmin(admin.ModelAdmin):
     get_author.short_description = 'Full Name'  # To set a column name
     get_author.admin_order_field = 'last_name'  # To allow sorting
 
+    # Detail view customizations
+    fields = ["first_name", "last_name", ("date_of_birth", "date_of_death")]
+
 
 # @ line Identical to admin.site.register(Book, BookAdmin)
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    # Customizations for the Model objects list view
+    # List view customizations
     list_display = ("title", "author", "isbn", "display_genre")
 
-    # Customizations for the object detail view
+    # Detail view customizations
     filter_horizontal = ["genre",]
 
 
@@ -26,6 +30,7 @@ class BookAdmin(admin.ModelAdmin):
 @admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
     list_display = ["instance", "imprint", "status", "due_back",]
+    list_filter = ["status", "due_back"]
 
     @admin.display(description="Book Instance")
     def instance(self, obj):
