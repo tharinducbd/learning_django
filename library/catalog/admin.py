@@ -2,6 +2,11 @@ from django.contrib import admin
 
 from .models import Author, Book, BookInstance, Genre, Language
 
+# Inline to be used inside Author model
+class BookInline(admin.TabularInline):
+    model = Book
+    extra = 1
+
 
 class AuthorAdmin(admin.ModelAdmin):
     # List view customizations
@@ -14,6 +19,7 @@ class AuthorAdmin(admin.ModelAdmin):
 
     # Detail view customizations
     fields = ["first_name", "last_name", ("date_of_birth", "date_of_death")]
+    inlines = [BookInline]
 
 
 # Inline to be used inside Author model
@@ -42,7 +48,7 @@ class BookInstanceAdmin(admin.ModelAdmin):
 
     @admin.display(description="Book Instance")
     def instance(self, obj):
-        return f"{obj.id} ({obj.book})"
+        return f"{obj.book} - {obj.id} "
     # instance.short_description = 'Book Instance'
 
     # Detail view customizations
