@@ -16,6 +16,10 @@ class AuthorAdmin(admin.ModelAdmin):
     fields = ["first_name", "last_name", ("date_of_birth", "date_of_death")]
 
 
+class BookInstanceInline(admin.TabularInline):
+    model = BookInstance
+
+
 # @ line Identical to admin.site.register(Book, BookAdmin)
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
