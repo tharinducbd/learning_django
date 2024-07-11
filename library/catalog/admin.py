@@ -16,6 +16,7 @@ class AuthorAdmin(admin.ModelAdmin):
     fields = ["first_name", "last_name", ("date_of_birth", "date_of_death")]
 
 
+# Inline to be used inside Author model
 class BookInstanceInline(admin.TabularInline):
     model = BookInstance
 
@@ -28,6 +29,7 @@ class BookAdmin(admin.ModelAdmin):
 
     # Detail view customizations
     filter_horizontal = ["genre",]
+    inlines = [BookInstanceInline]
 
 
 # @ line Identical to admin.site.register(BookInstance, BookInstanceAdmin)
