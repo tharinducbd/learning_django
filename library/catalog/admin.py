@@ -19,6 +19,7 @@ class AuthorAdmin(admin.ModelAdmin):
 # Inline to be used inside Author model
 class BookInstanceInline(admin.TabularInline):
     model = BookInstance
+    extra = 0
 
 
 # @ line Identical to admin.site.register(Book, BookAdmin)
