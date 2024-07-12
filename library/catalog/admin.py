@@ -2,6 +2,7 @@ from django.contrib import admin
 
 from .models import Author, Book, BookInstance, Genre, Language
 
+
 # Inline to be used inside Author model
 class BookInline(admin.TabularInline):
     model = Book
