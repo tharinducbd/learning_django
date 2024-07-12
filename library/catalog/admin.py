@@ -5,7 +5,7 @@ from .models import Author, Book, BookInstance, Genre, Language
 # Inline to be used inside Author model
 class BookInline(admin.TabularInline):
     model = Book
-    extra = 1
+    extra = 0
 
 
 class AuthorAdmin(admin.ModelAdmin):
