@@ -14,6 +14,9 @@ def index(request):
     # Available books (status = 'a')
     num_instances_available = BookInstance.objects.filter(status__exact='a').count()
 
+    # Books that have 'the' in the title
+    num_books_title_contains_the = Book.objects.filter(title__icontains='the').count()
+
     num_authors = Author.objects.count()
 
     context = {
@@ -21,6 +24,7 @@ def index(request):
         "num_instances": num_instances,
         "num_genres": num_genres,
         "num_instances_available": num_instances_available,
+        "num_books_title_contains_the": num_books_title_contains_the,
         "num_authors": num_authors,
     }
 
