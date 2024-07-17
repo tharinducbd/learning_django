@@ -11,10 +11,15 @@
         This is the list of books owned by the library.
     </p>
 
-    <ul>
-        {% for book in object_list %}
-            <li>{{ book }}</li>
-        {% endfor %}
-    </ul>
+    {% if object_list %}
+        <ul>
+            {% for book in object_list %}
+                <li>{{ book }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are not books in the library.</p>
+    {% endif %}
+
 
 {% endblock %}
