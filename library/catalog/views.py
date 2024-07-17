@@ -34,3 +34,8 @@ def index(request):
 
 class BookListView(generic.ListView):
     model = Book
+
+    # Overriding default attributes
+    # context_object_name = 'book_list'
+    # queryset = Book.objects.filter(title__icontains='the')[:10]
+    # template_name = 'catalog/book_list.html'
