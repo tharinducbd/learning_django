@@ -53,3 +53,7 @@ class BookListView(generic.ListView):
         # Create any data and add it to the context
         context['some_data'] = 'Some other data'
         return context
+
+
+class BookDetailView(generic.DetailView):
+    model = Book
