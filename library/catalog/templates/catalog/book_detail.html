@@ -1,0 +1,11 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}
+    <title>Local Library - Book Details</title>
+{% endblock %}
+
+{% block content %}
+
+    <h1>{{ object.title }} by {{ book.author.first_name }} {{ book.author.last_name }}</h1>
+
+{% endblock %}
