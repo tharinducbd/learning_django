@@ -21,7 +21,7 @@ class Genre(models.Model):
 
     def get_absolute_url(self):
         """Returns the url to access a particular genre instance."""
-        return reverse('genre-detail', args=[str(self.id),])
+        return reverse('catalog:genre-detail', args=[str(self.id),])
 
     class Meta:
         constraints = [
@@ -47,7 +47,7 @@ class Language(models.Model):
 
     def get_absolute_url(self):
         """Returns the url to accessa a particular language instance."""
-        return reverse('language-detail', args=[str(self.id),])
+        return reverse('catalog:language-detail', args=[str(self.id),])
 
     class Meta:
         constraints = [
@@ -100,7 +100,7 @@ class Book(models.Model):
 
     def get_absolute_url(self):
         """Returns the URL to access a detail record for this book."""
-        return reverse('book-detail', args=[str(self.id)])
+        return reverse('catalog:book-detail', args=[str(self.id)])
 
     class Meta:
         ordering = ['title', 'author']
@@ -154,7 +154,7 @@ class Author(models.Model):
 
     def get_absolute_url(self):
         """Returns the URL to access a particular author instance."""
-        return reverse('author-detail', args=[str(self.id)])
+        return reverse('catalog:author-detail', args=[str(self.id)])
 
     def __str__(self) -> str:
         """String for representing the Model object."""
