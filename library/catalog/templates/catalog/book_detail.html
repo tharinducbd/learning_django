@@ -38,6 +38,8 @@
 
             <p class="text-muted"><strong>Id:</strong> {{ copy.id }}</p>
 
+        {% empty %}
+                <p class="text-danger">Please update the instance information!</p>
         {% endfor %}
 
     </div>
