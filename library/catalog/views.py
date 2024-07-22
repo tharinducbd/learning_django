@@ -36,7 +36,7 @@ def index(request):
 
 class BookListView(generic.ListView):
     model = Book
-    paginate_by = 20
+    paginate_by = 15
 
     # Overriding default attributes
     # context_object_name = 'book_list'
