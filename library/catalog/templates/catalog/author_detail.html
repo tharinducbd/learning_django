@@ -1,0 +1,31 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}
+    <title>Local Library - All Authors</title>
+{% endblock %}
+
+{% block content %}
+
+    <h1>Author information: {{ object.first_name }} {{ author.last_name }}</h1>
+
+    <p>
+        <strong>Date of birth:</strong>
+        {% if author.date_of_birth %} {{ author.date_of_birth }}
+        {% else %} Record not found.
+        {% endif %}
+    </p>
+
+    {% if author.date_of_death %}
+        <p><strong>Date of death:</strong> {{ author.date_of_death }}</p>
+    {% endif %}
+
+    <h3>List of books</h3>
+    <ul>
+        {% for book in author.book_set.all %}
+            <li><a href="{{ book.get_absolute_url }}">{{ book }}</a></li>
+        {% empty %}
+            <p>There are not books from this author.</p>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
