@@ -19,13 +19,20 @@
         <p><strong>Date of death:</strong> {{ author.date_of_death }}</p>
     {% endif %}
 
-    <h3>List of books</h3>
-    <ul>
+    <div style="margin-left:20px;margin-top:20px;">
+        <h3>Books</h3>
+
         {% for book in author.book_set.all %}
-            <li><a href="{{ book.get_absolute_url }}">{{ book }}</a></li>
+            <hr>
+            <p>
+                <a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+                ({{ book.bookinstance_set.count }})
+                <br>
+                {{ book.summary }}
+            </p>
         {% empty %}
-            <p>There are not books from this author.</p>
+            <p class="text-info">We are yet to obtain books written by {{ author }}</p>
         {% endfor %}
-    </ul>
+    </div>
 
 {% endblock %}
