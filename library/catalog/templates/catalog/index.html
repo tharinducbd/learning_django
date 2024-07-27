@@ -22,9 +22,10 @@
         <li><strong>Genres:</strong> {{ num_genres }}</li>
     </ul>
 
-    <p>Additional records:</p>
+    <p>Additional tidbits:</p>
     <ul>
         <li><strong>Title with 'the' in it:</strong> {{ num_books_title_contains_the }}</li>
+        <li>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}</li>
     </ul>
 
 {% endblock %}
