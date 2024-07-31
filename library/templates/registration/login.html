@@ -1,0 +1,13 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}
+    <title>Local Library: Login</title>
+{% endblock title %}
+
+{% block content %}
+
+    {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+
+{% endblock content %}
