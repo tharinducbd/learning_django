@@ -71,6 +71,12 @@
                             </div>
                         {% endif %}
                     {% endblock %}
+
+                    <br><br><h6>Request object information</h6>
+                    <ul>
+                        <li>Request.path: {{ request.path }}</li>
+                        <li>Request.method: {{ request.method }}</li>
+                    </ul>                
                 </div>
 
             </div>
