@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.urls import reverse     # required for get_absolute_url()
 
@@ -132,6 +133,13 @@ class BookInstance(models.Model):
         blank=True,
         default='m',
         help_text='Book availability',
+    )
+
+    borrower = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
     )
 
     class Meta:
