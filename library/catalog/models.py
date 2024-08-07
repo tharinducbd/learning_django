@@ -1,11 +1,12 @@
+from datetime import date
+import uuid     # Required for unique book instances
+
 from django.conf import settings
 from django.db import models
 from django.urls import reverse     # required for get_absolute_url()
 
 from django.db.models import UniqueConstraint   # Constraint for unique values
 from django.db.models.functions import Lower    # Returns lower cased value
-
-import uuid     # Required for unique book instances
 
 
 class Genre(models.Model):
@@ -148,6 +149,11 @@ class BookInstance(models.Model):
     def __str__(self) -> str:
         """String for representing the Model object."""
         return f'{self.id} ({self.book.title})'
+    
+    @property
+    def is_overdue(self):
+        """Determines if the book is overdue based on due date and current date."""
+        return bool(self.due_back and date.today() > self.due_back)
 
 
 class Author(models.Model):
