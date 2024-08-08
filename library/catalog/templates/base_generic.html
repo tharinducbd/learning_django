@@ -32,6 +32,7 @@
                             <li><a href="{% url 'catalog:authors' %}">All authors</a></li>
                             {% if user.is_authenticated %}
                                 <li>User: {{ user.get_username }}</li>
+                                <li><a href="{% url 'catalog:my-borrowed' %}">My borrowed</a></li>
                                 <li>
                                     <form id="logout-form" action="{% url 'logout' %}" method="post">
                                         {% csrf_token %}
