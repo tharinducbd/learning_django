@@ -1,10 +1,14 @@
+import datetime
 from typing import Any
 
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.db.models.query import QuerySet
-from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
 from django.views import generic
 
+from .forms import RenewBookForm
 from .models import Author, Book, BookInstance, Genre
 
 
@@ -102,3 +106,35 @@ class LoanedBooksByAllUsersListView(PermissionRequiredMixin,generic.ListView):
 
     def get_queryset(self) -> QuerySet[Any]:
         return BookInstance.objects.filter(status__exact='o').order_by('due_back')
+
+
+def renew_book_librarian(request, pk):
+    book_instance = get_object_or_404(BookInstance, id=pk)
+
+    # If this is a POST request, then process the Form data
+    if request.method == 'POST':
+
+        # Create a form instance and populate it with data from the request (binding):
+        form = RenewBookForm(request.POST)
+
+        # Check if the form is valid:
+        if form.is_valid():
+            # Process the data in form.cleaned_data as requred.
+            # In this case, we only have to update due_back field of BookInstance model
+            book_instance.due_back = form.cleaned_data['renewal_date']
+            book_instance.save()
+
+            # Redirect to a new URL:
+            return HttpResponseRedirect(reverse('all-borrowed'))
+
+    # If this is a GET (or any other method), create teh default form. 
+    else:
+        proposed_renewal_date = datetime.date.today() + datetime.timedelta(weeks=3)
+        form = RenewBookForm(initial={'renewal_date': proposed_renewal_date})
+
+    context = {
+        'form': form,
+        'book_instance': book_instance
+    }
+
+    return render(request, 'catalog/book_renew_librarian.html', context)
