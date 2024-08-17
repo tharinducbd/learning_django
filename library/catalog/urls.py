@@ -11,10 +11,12 @@ urlpatterns = [
     path('author/<int:pk>', views.AuthorDetailView.as_view(), name='author-detail'),
 ]
 
+# URLs for library members
 urlpatterns += [
     path('mybooks/', views.LoanedBooksByUserListView.as_view(), name='my-borrowed'),
 ]
 
+# URLs for librarians
 urlpatterns += [
     path('borrowed/', views.LoanedBooksByAllUsersListView.as_view(), name='all-borrowed'),
 ]
