@@ -11,7 +11,7 @@ class BookInline(admin.TabularInline):
 
 class AuthorAdmin(admin.ModelAdmin):
     # List view customizations
-    list_display = ["get_author", "date_of_birth", "date_of_death",]
+    list_display = ["get_author", "date_of_birth", "date_of_death", 'pk']
 
     def get_author(self, obj):
         return f"{obj.last_name}, {obj.first_name}"
