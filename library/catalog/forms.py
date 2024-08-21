@@ -1,6 +1,7 @@
 import datetime
 
 from django import forms
+from django.forms import ModelForm
 
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
@@ -29,7 +30,7 @@ class RenewBookForm(forms.Form):
 
 # Identical to above form
 # But variable 'renewal_date' of the view needs to be renamed as 'due_back'!
-# class RenewBookForm(forms.ModelForm):
+# class RenewBookForm(ModelForm):
 #     class Meta:
 #         model = BookInstance
 #         fields = ['due_back',]
