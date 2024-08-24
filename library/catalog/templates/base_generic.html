@@ -53,8 +53,8 @@
                             <ul class="sidebar-nav">
                                 <li>Staff</li>
                                     <li><a href="{% url 'catalog:all-borrowed' %}">All borrowed</a></li>
-                                {% if perms.catalog.add_cauthor %}
-                                    <li><a href="{% url 'author-create' %}">Create author</a></li>
+                                {% if perms.catalog.add_author %}
+                                    <li><a href="{% url 'catalog:author-create' %}">Create author</a></li>
                                 {% endif %}
                             </ul>
                         {% endif %}
