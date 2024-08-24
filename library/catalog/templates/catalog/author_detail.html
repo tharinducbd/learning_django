@@ -36,7 +36,7 @@
     </div>
 
     {% block sidebar %}
-        {{ block super }}
+        {{ block.super }}
 
         {% if perms.catalog.change_author or perms.catalog.delete_author %}
             <hr>
