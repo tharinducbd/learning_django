@@ -172,3 +172,10 @@ class AuthorDelete(PermissionRequiredMixin, DeleteView):
             return HttpResponseRedirect(
                 reverse("catalog:author-delete", kwargs={"pk": self.object.pk})
             )
+
+
+class BookCreate(PermissionRequiredMixin, CreateView):
+    model = Book
+    fields = ['title', 'author', 'summary', 'isbn', 'genre', 'language']
+    initial = {'summary': 'Get ready to be immersed in a new journey!',}
+    permission_required = 'catalog.add_book'
