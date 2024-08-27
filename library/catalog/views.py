@@ -79,6 +79,11 @@ class AuthorListView(generic.ListView):
     model = Author
     paginate_by = 10
 
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['author_count'] = Author.objects.count()
+        return context
+
 
 class AuthorDetailView(generic.DetailView):
     model = Author
