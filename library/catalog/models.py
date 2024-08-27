@@ -34,6 +34,7 @@ class Genre(models.Model):
                                         "(case insensitive match)"
             ),
         ]
+        ordering = ['name',]
 
 
 class Language(models.Model):
