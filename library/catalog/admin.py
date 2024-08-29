@@ -33,11 +33,15 @@ class BookInstanceInline(admin.TabularInline):
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
     # List view customizations
-    list_display = ("title", "author", "isbn", "display_genre")
+    list_display = ("title", "author", "isbn", "display_genre", "copy_count")
 
     # Detail view customizations
     filter_horizontal = ["genre",]
     inlines = [BookInstanceInline]
+
+    @admin.display(description="Copies")
+    def copy_count(self, obj):
+        return obj.bookinstance_set.count()
 
 
 # @ line Identical to admin.site.register(BookInstance, BookInstanceAdmin)
