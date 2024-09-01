@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from catalog.models import Author, Genre
+from catalog.models import Author, Genre, Language
 
 
 # This is for demonstrations only.
@@ -96,3 +96,21 @@ class GenreModelTests(TestCase):
     def test_get_absolute_url(self):
         # Genre model has no detail view implemented.
         pass
+
+
+class LanguageModelTests(TestCase):
+    @classmethod
+    def setUpTestData(cls) -> None:
+        cls.language = Language.objects.create(name="Sinhala")
+
+    def test_name_label(self):
+        field_label = self.language._meta.get_field('name').verbose_name
+        self.assertEqual(field_label, 'name')
+
+    def test_name_max_length(self):
+        max_length = self.language._meta.get_field('name').max_length
+        self.assertEqual(max_length, 200)
+
+    def test_name_help_text(self):
+        help_text = self.language._meta.get_field('name').help_text
+        self.assertIn('natural language', help_text)
