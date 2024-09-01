@@ -79,11 +79,19 @@ class GenreModelTests(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
         # Set up data for the whole TestCase
-        cls.genre_1 = Genre.objects.create(name='Test_genre_1')
+        cls.genre = Genre.objects.create(name='Test_genre')
 
     def test_name_label(self):
-        field_label = self.genre_1._meta.get_field('name').verbose_name
+        field_label = self.genre._meta.get_field('name').verbose_name
         self.assertEqual(field_label, 'name')
 
     def test_name_max_length(self):
-        self.assertEqual(self.genre_1._meta.get_field('name').max_length, 200)
+        max_length = self.genre._meta.get_field('name').max_length
+        self.assertEqual(max_length, 200)
+
+    def test_name_help_text(self):
+        help_text = self.genre._meta.get_field('name').help_text
+        self.assertIn('Enter a book genre', help_text)
+
+    def test_name_unique(self):
+        pass
