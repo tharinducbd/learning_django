@@ -93,5 +93,6 @@ class GenreModelTests(TestCase):
         help_text = self.genre._meta.get_field('name').help_text
         self.assertIn('Enter a book genre', help_text)
 
-    def test_name_unique(self):
+    def test_get_absolute_url(self):
+        # Genre model has no detail view implemented.
         pass
