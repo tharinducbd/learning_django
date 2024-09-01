@@ -1,6 +1,7 @@
 from django.test import TestCase
+from django.urls import reverse
 
-from catalog.models import Author
+from catalog.models import Author, Genre
 
 
 # This is for demonstrations only.
@@ -27,7 +28,7 @@ from catalog.models import Author
 #         self.assertEqual(1 + 1, 2)
 
 
-class AuthorModelTest(TestCase):
+class AuthorModelTests(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
         # Set up non-modified objects used by all test methods.
@@ -72,3 +73,17 @@ class AuthorModelTest(TestCase):
         author = Author.objects.get(id=1)
         # This will also fail if the urlconf is not defined.
         self.assertEqual(author.get_absolute_url(), '/catalog/author/1')
+
+
+class GenreModelTests(TestCase):
+    @classmethod
+    def setUpTestData(cls) -> None:
+        # Set up data for the whole TestCase
+        cls.genre_1 = Genre.objects.create(name='Test_genre_1')
+
+    def test_name_label(self):
+        field_label = self.genre_1._meta.get_field('name').verbose_name
+        self.assertEqual(field_label, 'name')
+
+    def test_name_max_length(self):
+        self.assertEqual(self.genre_1._meta.get_field('name').max_length, 200)
