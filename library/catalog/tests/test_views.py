@@ -28,3 +28,11 @@ class AuthorListViewTests(TestCase):
         response = self.client.get(reverse('catalog:authors'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'catalog/author_list.html')
+
+    def test_pagination_is_ten(self):
+        response = self.client.get(reverse('catalog:authors'))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('is_paginated', response.context)
+        # self.assertTrue('is_paginated' in response.context)     # Similar to previous!
+        self.assertTrue(response.context['is_paginated'] == True)
+        self.assertEqual(len(response.context['author_list']), 10)
