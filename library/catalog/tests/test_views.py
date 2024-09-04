@@ -36,3 +36,11 @@ class AuthorListViewTests(TestCase):
         # self.assertTrue('is_paginated' in response.context)     # Similar to previous!
         self.assertTrue(response.context['is_paginated'] == True)
         self.assertEqual(len(response.context['author_list']), 10)
+
+    def test_lists_all_authors(self):
+        # Get the second page and check if it has exactly 2 items.
+        response = self.client.get(reverse('catalog:authors')+'?page=2')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('is_paginated', response.context)
+        self.assertTrue(response.context['is_paginated'] == True)
+        self.assertEqual(len(response.context['author_list']), 2)
