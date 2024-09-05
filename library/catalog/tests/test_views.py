@@ -1,5 +1,8 @@
+import datetime
+
 from django.test import TestCase
 from django.urls import reverse
+from django.utils import timezone
 
 from catalog.models import Author
 
@@ -44,3 +47,49 @@ class AuthorListViewTests(TestCase):
         self.assertIn('is_paginated', response.context)
         self.assertTrue(response.context['is_paginated'] == True)
         self.assertEqual(len(response.context['author_list']), 2)
+
+
+# Get user model from settings
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
+from catalog.models import BookInstance, Book, Genre, Language
+
+class LoanedBookInstancedByUserListViewTests(TestCase):
+    def setUp(self) -> None:
+        # Create two users
+        test_user_1 = User.objects.create(username='testuser1', password='1X<ISRUkw+tuK')
+        test_user_2 = User.objects.create(username='testuser2', password='2HJ1vRV0Z&3iD')
+
+        test_user_1.save()
+        test_user_2.save()
+
+        # Create a book
+        test_author = Author.objects.create(first_name='John', last_name='Smith')
+        test_genre = Genre.objects.create(name='Fantasy')
+        test_language = Language.objects.create('English')
+        test_book = Book.objects.create(
+            title='Book title',
+            summary='My book summary',
+            isbn='ABCDEFG',
+            author=test_author,
+            language=test_language
+        )
+
+        # Create genre as a post-step
+        genre_objects_for_book = Genre.objects.all()
+        test_book.genre.set(genre_objects_for_book) # Direct assignment of many-to-many types not allowed!
+        test_book.save()
+
+        # Create 30 BookInstance objects
+        num_book_copies = 30
+        for book_copy in range(num_book_copies):
+            return_date = timezone.localtime() + datetime.timedelta(days=book_copy%5)
+            the_borrower = test_user_1 if book_copy % 2 else test_user_2
+            status = 'm'
+            BookInstance.objects.create(
+                book=test_book,
+                imprint='Unlikely Imprint, 2024',
+                due_back=return_date,
+                status=status,
+            )
