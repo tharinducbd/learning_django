@@ -67,7 +67,7 @@ class LoanedBookInstancedByUserListViewTests(TestCase):
         # Create a book
         test_author = Author.objects.create(first_name='John', last_name='Smith')
         test_genre = Genre.objects.create(name='Fantasy')
-        test_language = Language.objects.create('English')
+        test_language = Language.objects.create(name='English')
         test_book = Book.objects.create(
             title='Book title',
             summary='My book summary',
@@ -93,3 +93,7 @@ class LoanedBookInstancedByUserListViewTests(TestCase):
                 due_back=return_date,
                 status=status,
             )
+
+    def test_redirect_if_not_logged_in(self):
+        response = self.client.get(reverse('catalog:my-borrowed'))
+        self.assertRedirects(response, '/accounts/login/?next=/catalog/mybooks/')
