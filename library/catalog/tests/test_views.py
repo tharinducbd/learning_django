@@ -58,8 +58,8 @@ from catalog.models import BookInstance, Book, Genre, Language
 class LoanedBookInstancedByUserListViewTests(TestCase):
     def setUp(self) -> None:
         # Create two users
-        test_user_1 = User.objects.create(username='testuser1', password='1X<ISRUkw+tuK')
-        test_user_2 = User.objects.create(username='testuser2', password='2HJ1vRV0Z&3iD')
+        test_user_1 = User.objects.create_user(username='testuser1', password='1X<ISRUkw+tuK')
+        test_user_2 = User.objects.create_user(username='testuser2', password='2HJ1vRV0Z&3iD')
 
         test_user_1.save()
         test_user_2.save()
@@ -97,3 +97,16 @@ class LoanedBookInstancedByUserListViewTests(TestCase):
     def test_redirect_if_not_logged_in(self):
         response = self.client.get(reverse('catalog:my-borrowed'))
         self.assertRedirects(response, '/accounts/login/?next=/catalog/mybooks/')
+
+    def test_logged_in_uses_correct_template(self):
+        login = self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
+        response = self.client.get(reverse('catalog:my-borrowed'))
+
+        # Check our user is logged in
+        self.assertEqual(str(response.context['user']), 'testuser1')
+
+        # Check that we got a response 'success'
+        self.assertEqual(response.status_code, 200)
+
+        # Check we used correct template
+        self.assertTemplateUsed(response, 'catalog/bookinstance_list_borrowed_user.html')
