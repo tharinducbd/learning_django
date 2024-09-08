@@ -91,6 +91,7 @@ class LoanedBookInstancedByUserListViewTests(TestCase):
                 book=test_book,
                 imprint='Unlikely Imprint, 2024',
                 due_back=return_date,
+                borrower=the_borrower,
                 status=status,
             )
 
