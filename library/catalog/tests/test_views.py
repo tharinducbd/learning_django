@@ -144,3 +144,20 @@ class LoanedBookInstancedByUserListViewTests(TestCase):
         for bookitem in response.context['bookinstance_list']:
             self.assertEqual(response.context['user'], bookitem.borrower)
             self.assertEqual(bookitem.status, 'o')
+
+    def test_pages_ordered_by_due_date(self):
+        # Change all books to be on loan
+        for book in BookInstance.objects.all():
+            book.status = 'o'
+            book.save()
+
+        login = self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
+        response = self.client.get(reverse('catalog:my-borrowed'))
+
+        # Check our user is logged in
+        self.assertEqual(str(response.context['user']), 'testuser1')
+        # Check that we got a response 'success'
+        self.assertEqual(response.status_code, 200)
+
+        # Confirm that of the items, only 10 are displayed due to pagination.
+        self.assertEqual(len(response.context['bookinstance_list']), 10)
