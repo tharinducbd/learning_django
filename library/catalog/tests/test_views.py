@@ -162,3 +162,11 @@ class LoanedBookInstancedByUserListViewTests(TestCase):
 
         # Confirm that of the items, only 10 are displayed due to pagination.
         self.assertEqual(len(response.context['bookinstance_list']), 10)
+
+        last_date = 0
+        for book in response.context['bookinstance_list']:
+            if last_date == 0:
+                last_date = book.due_back
+            else:
+                self.assertTrue(last_date <= book.due_back)
+                last_date = book.due_back
