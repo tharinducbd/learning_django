@@ -6,3 +6,8 @@ messegas = [
 
 for msg in messegas:
     print(msg)
+
+import datetime
+
+print(datetime.datetime.today())
+print("Progressed another step in the Django journey!")
