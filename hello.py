@@ -1,7 +1,6 @@
 messegas = [
     "Welcome to the intermediate level of Django!",
-    "The Server-side MDN Tutorial was added to the mix.",
-    "Back to the game!",
+    "The Server-side MDN Tutorial started.",
 ]
 
 for msg in messegas:
@@ -10,4 +9,3 @@ for msg in messegas:
 import datetime
 
 print(datetime.datetime.today())
-print("Progressed another step in the Django journey!")
